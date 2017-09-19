@@ -4,7 +4,7 @@ void setup(){
   size (720,480);
  
   particulas = new ArrayList<particula>();
-  for (int i=0; i<0; i++)
+  for (int i=0; i<100; i++)
   {
     particulas.add(new particula());
   }
@@ -19,6 +19,7 @@ void draw(){
   {
     p.display();
     p.movimiento();
+    p.rebotar();
   }
 }
 
@@ -39,6 +40,8 @@ class particula{
   float v;
   float a;
   float t;
+  float an1;
+  float an2;
   color c;
   particula (float x_, float y_, float v_, float a_, float t_, color c_){
     x=x_;
@@ -54,10 +57,12 @@ class particula{
   particula (){
     x=random(720);
     y=random(480);
-    v=random(20);
-    a=random(TWO_PI);
+    v=random(10);
+    a=random(180);
     t=random(50);
     c=color(random(255),random(255),random(255));
+    an1=cos(a);
+    an2=sin(a);
   }
   
   
@@ -65,9 +70,12 @@ class particula{
     x=x_;
     y=y_;
     v=random(10);
-    a=random(TWO_PI);
-    t=random(1,30);
+    a=random(180);
+    t=random(50);
     c=color(random(255),random(255),random(255));
+    an1=cos(a);
+    an2=sin(a);
+    
   }
   
   
@@ -82,8 +90,21 @@ class particula{
   
   
   void movimiento(){
-    x += (cos(v))*1.3;
-    y += (sin(a))*1.3;
+   
+   
+   x+=an1*v;
+   y+=an2*v;
     
+  }
+  
+  void rebotar(){
+    if(x>=720 || x<=0){
+      
+      an1*=-1;
+    }
+    if(y>=480 || y<=0){
+     
+      an2*=-1;
+    }
   }
 }
