@@ -1,0 +1,789 @@
+figura Eraie;
+figura Canche;
+figura Jacquie;
+figura Francisco;
+figura Benja;
+figura Emma;
+figura Vicky;
+figura Perla;
+
+ArrayList <figura> figuras;
+
+
+
+void setup(){
+  Eraie     = new triangulo  (90,0,90,90,90);
+  Canche    = new cuadrado   (80,0,0);
+  Jacquie   = new rectangulo (90,50,0,0);
+  Francisco = new circulo    (70,0,0);
+  Perla     = new pentagono  (90,0);
+  Benja     = new hexagono   (90,0);
+  Emma      = new eptagono   (90,0);
+  Vicky     = new octagono   (90,0);
+  
+  figuras = new ArrayList<figura>();
+  figuras.add(Eraie);
+  figuras.add(Canche);
+  figuras.add(Jacquie);
+  figuras.add(Francisco);
+  figuras.add(Perla);
+  
+  size(1280,720);
+}
+
+
+
+void draw(){
+  
+  background(0);
+  text("Q para el triangulo",100,100);
+  text("W para el triangulo",100,150);
+  text("E para el triangulo",100,200);
+  text("R para el triangulo",100,250);
+  text("T para el triangulo",100,300);
+  text("Y para el triangulo",100,350);
+  text("U para el triangulo",100,400);
+  text("I para el triangulo",100,450);
+  
+  seleccion();
+  
+}
+
+
+
+interface figura {
+  float perimetro();
+  float area();
+  void display();
+}
+
+
+
+class triangulo implements figura{
+  
+  float b,h,l1,l2,l3;
+  
+  triangulo(float b_, float h_, float l1_, float l2_, float l3_){
+    b=b_;
+    h=h_;
+    l1=l1_;
+    l2=l2_;
+    l3=l3_;
+  }
+  
+  float perimetro(){
+    return l1+l2+l3;
+  }
+  
+  float area(){
+    h= (sqrt(3)*l1)/2;
+    return (b*h)/(2);
+  }
+  
+  void display(){
+    pushMatrix();
+    noStroke();
+    translate((width/3),(height/1.8));
+    scale(3);
+    triangle(0,0,l1,0,l1/2,-h);
+    popMatrix();
+  }
+}
+
+
+
+class cuadrado implements figura{
+
+  int l,x,y;
+  
+  cuadrado(int l_, int x_, int y_){
+    l=l_;
+    x=x_;
+    y=y_;
+  }
+  
+  float perimetro(){
+    return l*4;
+  }
+  
+  float area(){
+    return l*l;
+  }
+  
+  void display(){
+    
+    pushMatrix();
+    noStroke();
+    translate((width/3),(height/4));
+    scale(3);
+    rect(x,y,l,l);
+    popMatrix();
+    
+  }
+}
+
+
+
+class rectangulo implements figura{
+  
+  int l1,l2,x,y;
+  
+  rectangulo(int l1_, int l2_, int x_, int y_){
+    l1=l1_;
+    l2=l2_;
+    x=x_;
+    y=y_;
+  }
+  
+  float perimetro(){
+    return (l1*2)+(l2*2);
+  }
+  
+  float area(){
+    return (l1*l2);
+  }
+  
+  void display(){
+    pushMatrix();
+    noStroke();
+    translate((width/3),(height/3));
+    scale(3);
+    rect(x,y,l1,l2);
+    popMatrix();
+  }
+}
+
+
+class circulo implements figura{
+  
+  int r,x,y;
+  
+  circulo(int r_, int x_, int y_){
+    r=r_;
+    x=x_;
+    y=y_;
+  }
+  
+  float perimetro(){
+    return 2*PI*r;
+  }
+  
+  float area(){
+    return (PI)*(r*r);
+  }
+  
+  void display(){
+    pushMatrix();
+    noStroke();
+    translate((width/2.3),(height/2.4));
+    scale(3);
+    ellipse(x,y,r,r);
+    popMatrix();
+  }
+}
+
+
+
+class pentagono implements figura{
+  
+  float l1,a;
+  
+  pentagono(float l1_, float a_){
+    l1=l1_;
+    a=a_;
+  }
+  
+  float perimetro(){
+    return (l1*5);
+  }
+  
+  float area(){
+    float t;
+    t=tan(0.628319);
+    a=l1/(2*t);
+    return (Perla.perimetro()*a)/(2);
+  }
+  
+  void display(){
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    rotate(-1.25664);
+    scale(1.5);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    rotate(-1.25664);
+    scale(1.5);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    rotate(-2.51327);
+    scale(1.5);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    rotate(-2.51327);
+    scale(1.5);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    rotate(-3.76991);
+    scale(1.5);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    rotate(-3.76991);
+    scale(1.5);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    
+    
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    rotate(-5.02655);
+    scale(1.5);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    rotate(-5.02655);
+    scale(1.5);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+  }
+}
+
+
+
+class hexagono implements figura{
+  
+  float l1,a;
+  
+  hexagono(float l1_, float a_ ){
+    l1=l1_;
+    a=a_;
+  }
+  
+  float perimetro(){
+    return (l1*6);
+  }
+  
+  float area(){
+    float t;
+    t=tan(0.523599);
+    println(t);
+    a=l1/(2*t);
+    println(a);
+    return (Benja.perimetro()*a)/(2);
+  }
+  
+  void display(){
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    
+     pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(1.0472);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(1.0472);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    
+     pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(2.0944);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(2.0944);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    
+    
+     pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    stroke(255);
+    rotate(3.14159);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(3.14159);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    
+    
+     pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(4.18879);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(4.18879);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    
+    
+    
+     pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(5.23599);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(5.23599);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+  }
+}
+
+
+
+class eptagono implements figura{
+  
+  float l1,a;
+  
+  eptagono(float l1_, float a_){
+    l1=l1_;
+    a=a_;
+  }
+  
+  float perimetro(){
+    return (l1*7);
+  }
+  
+  float area(){
+   float t;
+    t=tan(0.44879895043691);
+    println(t);
+    a=l1/(2*t);
+    println(a);
+    return (Emma.perimetro()*a)/(2);
+  }
+  
+  void display(){
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(0.89759790104836);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(0.89759790104836);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(1.7951958027949);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(1.7951958027949);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(2.6927937050649);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(2.6927937050649);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(3.5903916055897);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(3.5903916055897);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(4.4879895078598);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(4.4879895078598);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(5.3855874083846);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(5.3855874083846);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+  }
+}
+
+
+
+class octagono implements figura{
+  
+  float l1,a;
+  
+  octagono(float l1_, float a_){
+    l1=l1_;
+    a=a_;
+  }
+  
+  float perimetro(){
+    return (l1*8);
+  }
+  
+  float area(){
+    float t;
+    t=tan(0.3926991);
+    println(t);
+    a=l1/(2*t);
+    println(a);
+    return (Vicky.perimetro()*a)/(2);
+  }
+  
+  void display(){
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(0.785398);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(0.785398);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(1.5708);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(1.5708);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(2.35619);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(2.35619);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(3.14159);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(3.14159);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(3.92699);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(3.92699);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(4.71239);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(4.71239);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+    
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(5.49779);
+    stroke(255);
+    triangle(0,0,0,a,l1/2,a);
+    popMatrix();
+    
+    pushMatrix();
+    translate((width/2.3),(height/2.4));
+    scale(1.5);
+    rotate(5.49779);
+    stroke(255);
+    triangle(0,0,0,a,-l1/2,a);
+    popMatrix();
+  }
+}
+
+void seleccion(){
+  if (keyPressed==true){
+    if(key=='q'){
+      println(Eraie.perimetro());
+      println(Eraie.area());
+      Eraie.display();
+      text("Perimetro; "+Eraie.perimetro(),1000,100);
+      text("Area; "+Eraie.area(),1000,200);
+    }
+    if(key=='w'){
+      println(Canche.perimetro());
+      println(Canche.area());
+      Canche.display();
+      text("Perimetro; "+Canche.perimetro(),1000,100);
+      text("Area; "+Canche.area(),1000,200);
+    }
+    if(key=='e'){
+      println(Jacquie.perimetro());
+      println(Jacquie.area());
+      Jacquie.display();
+      text("Perimetro; "+Jacquie.perimetro(),1000,100);
+      text("Area; "+Jacquie.area(),1000,200);
+    }
+    if(key=='r'){
+      println(Francisco.perimetro());
+      println(Francisco.area());
+      Francisco.display();
+      text("Perimetro; "+Francisco.perimetro(),1000,100);
+      text("Area; "+Francisco.area(),1000,200);
+    }
+    if(key=='t'){
+      println(Perla.perimetro());
+      println(Perla.area());
+      Perla.display();
+      text("Perimetro; "+Perla.perimetro(),1000,100);
+      text("Area; "+Perla.area(),1000,200);
+    }
+    if(key=='y'){
+      println(Benja.perimetro());
+      println(Benja.area());
+      Benja.display();
+      text("Perimetro; "+Benja.perimetro(),1000,100);
+      text("Area; "+Benja.area(),1000,200);
+    }
+    if(key=='u'){
+      println(Emma.perimetro());
+      println(Emma.area());
+      Emma.display();
+      text("Perimetro; "+Emma.perimetro(),1000,100);
+      text("Area; "+Emma.area(),1000,200);
+    }
+    if(key=='i'){
+      println(Vicky.perimetro());
+      println(Vicky.area());
+      Vicky.display();
+      text("Perimetro; "+Vicky.perimetro(),1000,100);
+      text("Area; "+Vicky.area(),1000,200);
+    }
+  }
+}
